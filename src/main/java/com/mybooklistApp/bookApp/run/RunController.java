@@ -7,7 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,10 +23,12 @@ public class RunController {
     public RunController(RunRepository runRepository){
         this.runRepository = runRepository;
     }
+    //get all req
     @GetMapping("")
     List<Run> findAll() {
         return runRepository.findAll();
     }
+    //get byID REQ
     @GetMapping("/{id}")
     Run findById(@PathVariable Integer id){
         Optional<Run> run = runRepository.findById(id);
@@ -32,5 +37,10 @@ public class RunController {
         }
         return run.get();
     }
-    
+    // Post req
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("")
+    void create(@RequestBody Run run){
+        runRepository.create(run);
+    }
 }
