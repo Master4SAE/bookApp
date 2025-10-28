@@ -1,12 +1,7 @@
 package com.mybooklistApp.bookApp.run;
-
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
-
 public record Run(
     Integer id,
     @NotEmpty
