@@ -6,14 +6,14 @@ public record Run(
     Integer id,
     @NotEmpty
     String title,
-    LocalDateTime started0n,
-    LocalDateTime completed0n,
+    LocalDateTime started_on,
+    LocalDateTime completed_on,
     @Positive
     Integer miles,
     Location Location
 ) {
     public Run {
-        if(!completed0n.isAfter(started0n)){
+        if(!completed_on.isAfter(started_on)){
             throw new IllegalArgumentException("completed must be after started");
         }
     }
